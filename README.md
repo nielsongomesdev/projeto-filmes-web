@@ -35,6 +35,7 @@ npm install
 
 # 2. Volte para a raiz e instale o Back-end (Express)
 cd ..
+
 cd backend
 
 npm install
