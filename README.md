@@ -30,15 +30,19 @@ Bash
 
 # 1. Instale o Front-end (React + TS)
 cd frontend
+
 npm install
 
 # 2. Volte para a raiz e instale o Back-end (Express)
 cd ..
 cd backend
+
 npm install
+
 Pronto! Seu ambiente está configurado igual ao de todos no grupo.
 
 💻 Como Rodar o Projeto
+
 Você precisará de dois terminais abertos para rodar o projeto completo.
 
 Terminal 1: Rodar o Back-end (API)
@@ -60,6 +64,7 @@ cd frontend
 
 # Inicie o cliente React (Vite)
 npm run dev
+
 O Vite vai abrir o site no seu navegador (ex: em http://localhost:5173)
 
 🤝 Como Contribuir (Fluxo de Trabalho)
