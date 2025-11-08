@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Filme {
+  id          Int    @id @default(autoincrement())
+  titulo      String
+  faixaEtaria Int
+  genero      String
+  atores      Ator[]
+}
+
+model Ator {
+  id     Int    @id @default(autoincrement())
+  nome   String @unique
+  filmes Filme[]
+}
