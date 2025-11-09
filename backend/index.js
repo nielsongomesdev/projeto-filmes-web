@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import filmeRoutes from './rotas/filme.routes.js';
 import prisma from './lib/prisma.js';
+
+import filmeRoutes from './rotas/filme.routes.js';
+import atorRoutes from './rotas/ator.routes.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', filmeRoutes);
+app.use('/api', atorRoutes);
 
 const server = app.listen(port, () => {
     console.log(`Backend rodando em http://localhost:${port}`);
@@ -20,10 +23,8 @@ process.on('SIGTERM', () => {
     
     server.close(async () => {
         console.log('Servidor Express desligado.');
-        
         await prisma.$disconnect();
         console.log('Conexão com o Prisma desligada.');
-        
         process.exit(0);
     });
 });
