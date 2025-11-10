@@ -1,15 +1,20 @@
 import prisma from '../lib/prisma.js';
 
 const findAll = async () => {
-    const atores = await prisma.ator.findMany();
-    return atores;
+    return await prisma.ator.findMany();
 };
-
 const create = async (dadosDoAtor) => {
-    const ator = await prisma.ator.create({
-        data: dadosDoAtor,
-    });
-    return ator;
+    return await prisma.ator.create({ data: dadosDoAtor });
 };
 
-export default { findAll, create }
+const findById = async (id) => {
+    return await prisma.ator.findUnique({ where: { id: id } });
+};
+const update = async (id, dadosDoAtor) => {
+    return await prisma.ator.update({ where: { id: id }, data: dadosDoAtor });
+};
+const remove = async (id) => {
+    return await prisma.ator.delete({ where: { id: id } });
+};
+
+export default { findAll, create, findById, update, remove };

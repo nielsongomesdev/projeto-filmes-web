@@ -47,6 +47,11 @@ const update = async (request, response, next) => {
 
 const findById = async (request, response, next) => {
     try {
+        
+        if (request.filme) {
+            return response.json(request.filme);
+        }
+
         const id = Number(request.params.id);
         const filme = await filmeService.findById(id);
 

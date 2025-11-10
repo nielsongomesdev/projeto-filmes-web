@@ -6,12 +6,12 @@ const router = Router();
 
 router.get('/filmes', filmeController.findAll);
 
-router.get('/filmes/:id', filmeController.findById);
+router.get('/filmes/:id', filmeMiddleware.validarIdFilme, filmeController.findById);
 
 router.post('/filmes', filmeMiddleware.validarDadosFilme, filmeController.create);
 
-router.put('/filmes/:id', filmeMiddleware.validarDadosFilme, filmeController.update);
+router.put('/filmes/:id', filmeMiddleware.validarIdFilme, filmeMiddleware.validarDadosFilme, filmeController.update);
 
-router.delete('/filmes/:id', filmeController.remove);
+router.delete('/filmes/:id', filmeMiddleware.validarIdFilme, filmeController.remove);
 
-export default router
+export default router;
