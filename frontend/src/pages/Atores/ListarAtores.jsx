@@ -38,8 +38,8 @@ export default function ListarAtores() {
               <tr key={a.id} className="border-t">
                 <td className="py-2 px-4">{a.nome}</td>
                 <td className="py-2 px-4 space-x-2">
-                  {/* <Link className="btn btn-outline" to={`/atores/${a.id}/editar`}>Editar</Link> */}
-                  {/* <button className="btn btn-danger" onClick={() => deletar(a.id)}>Excluir</button> */}
+                  <Link className="btn btn-outline" to={`/atores/${a.id}/editar`}>Editar</Link>
+                  <button className="btn btn-danger" onClick={() => deletar(a.id)}>Excluir</button>
                 </td>
               </tr>
             ))}
