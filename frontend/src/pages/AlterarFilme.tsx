@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
+interface Ator {
+    id: number;
+    nome: string;
+}
 
 type FormInputs = {
     titulo: string;
     genero: string;
     faixaEtaria: number;
+    atores: string[];
 };
 
 export function AlterarFilme() {
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
+
+    const [listaDeAtores, setListaDeAtores] = useState<Ator[]>([]);
 
     const {
         register,
@@ -22,13 +29,27 @@ export function AlterarFilme() {
     } = useForm<FormInputs>();
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/filmes/${id}`)
-            .then(response => {
-                reset(response.data);
+        const buscarAtores = axios.get('http://localhost:3000/api/atores');
+        const buscarFilme = axios.get(`http://localhost:3000/api/filmes/${id}`);
+
+        Promise.all([buscarAtores, buscarFilme])
+            .then(([responseAtores, responseFilme]) => {
+                setListaDeAtores(responseAtores.data);
+
+                const filme = responseFilme.data;
+                
+                const atorIds = filme.atores.map((ator: Ator) => ator.id.toString());
+
+                reset({
+                    titulo: filme.titulo,
+                    genero: filme.genero,
+                    faixaEtaria: filme.faixaEtaria,
+                    atores: atorIds
+                });
             })
             .catch(error => {
-                console.error('Erro ao buscar filme:', error);
-                alert('Filme não encontrado.');
+                console.error('Erro ao buscar dados:', error);
+                alert('Dados não encontrados.');
                 navigate('/');
             });
     }, [id, reset, navigate]);
@@ -36,8 +57,12 @@ export function AlterarFilme() {
     const onSubmit: SubmitHandler<FormInputs> = async (data) => {
         try {
             const dadosFormatados = {
-                ...data,
-                faixaEtaria: Number(data.faixaEtaria)
+                titulo: data.titulo,
+                genero: data.genero,
+                faixaEtaria: Number(data.faixaEtaria),
+                atores: {
+                    set: data.atores.map(idString => ({ id: Number(idString) }))
+                }
             };
 
             await axios.put(`http://localhost:3000/api/filmes/${id}`, dadosFormatados);
@@ -64,7 +89,7 @@ export function AlterarFilme() {
                     <input
                         type="text"
                         id="titulo"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full ..."
                         {...register('titulo', { required: 'O título é obrigatório' })}
                     />
                     {errors.titulo && <p className="text-red-500 text-xs mt-1">{errors.titulo.message}</p>}
@@ -75,7 +100,7 @@ export function AlterarFilme() {
                     <input
                         type="text"
                         id="genero"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full ..."
                         {...register('genero', { required: 'O gênero é obrigatório' })}
                     />
                     {errors.genero && <p className="text-red-500 text-xs mt-1">{errors.genero.message}</p>}
@@ -86,7 +111,7 @@ export function AlterarFilme() {
                     <input
                         type="number"
                         id="faixaEtaria"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full ..."
                         {...register('faixaEtaria', {
                             required: 'A faixa etária é obrigatória',
                             min: { value: 0, message: 'Idade não pode ser negativa' }
@@ -95,10 +120,26 @@ export function AlterarFilme() {
                     {errors.faixaEtaria && <p className="text-red-500 text-xs mt-1">{errors.faixaEtaria.message}</p>}
                 </div>
 
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">Atores</label>
+                    <div className="grid grid-cols-2 gap-2 p-4 border rounded max-h-40 overflow-y-auto">
+                        {listaDeAtores.map((ator) => (
+                            <label key={ator.id} className="flex items-center space-x-2">
+                                <input 
+                                    type="checkbox"
+                                    value={ator.id}
+                                    {...register('atores')}
+                                />
+                                <span>{ator.nome}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+                
                 <div className="text-right">
                     <button
                         type="submit"
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ..."
                     >
                         Salvar Alterações
                     </button>

@@ -12,6 +12,7 @@ export function Layout() {
                 <nav className="flex gap-4">
                     <Link to="/" className="hover:text-blue-500">Listar</Link>
                     <Link to="/inserir" className="hover:text-blue-500">Inserir</Link>
+                    <Link to="/inserir-ator" className="hover:text-blue-500">Inserir Ator</Link>
                 </nav>
             </header>
 
