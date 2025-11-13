@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 interface Filme {
     id: number;
@@ -39,6 +40,12 @@ export function ListarFilmes() {
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
                 <table className="min-w-full bg-white">
                     <thead className="bg-gray-800 text-white">
+                        <tr>
+                            <th className="py-3 px-6 text-left">Título</th>
+                            <th className="py-3 px-6 text-left">Gênero</th>
+                            <th className="py-3 px-6 text-left">Faixa Etária</th>
+                            <th className="py-3 px-6 text-left">Ações</th>
+                        </tr>
                     </thead>
                     <tbody className="text-gray-700">
                         {filmes.map((filme) => (
@@ -46,14 +53,24 @@ export function ListarFilmes() {
                                 <td className="py-4 px-6">{filme.titulo}</td>
                                 <td className="py-4 px-6">{filme.genero}</td>
                                 <td className="py-4 px-6">{filme.faixaEtaria}</td>
-                                <td className="py-4 px-6">
-                                    <button
+                                
+                                <td className="py-4 px-6 flex gap-4"> 
+                                    
+                                    <Link 
+                                        to={`/alterar/${filme.id}`}
+                                        className="text-blue-500 hover:text-blue-700"
+                                    >
+                                        Alterar
+                                    </Link>
+
+                                    <button 
                                         className="text-red-500 hover:text-red-700"
                                         onClick={() => handleDelete(filme.id)}
                                     >
                                         Remover
                                     </button>
                                 </td>
+
                             </tr>
                         ))}
                     </tbody>
