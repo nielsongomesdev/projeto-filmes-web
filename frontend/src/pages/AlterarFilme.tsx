@@ -89,7 +89,7 @@ export function AlterarFilme() {
                     <input
                         type="text"
                         id="titulo"
-                        className="shadow appearance-none border rounded w-full ..."
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
                         {...register('titulo', { required: 'O título é obrigatório' })}
                     />
                     {errors.titulo && <p className="text-red-500 text-xs mt-1">{errors.titulo.message}</p>}
@@ -100,7 +100,7 @@ export function AlterarFilme() {
                     <input
                         type="text"
                         id="genero"
-                        className="shadow appearance-none border rounded w-full ..."
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
                         {...register('genero', { required: 'O gênero é obrigatório' })}
                     />
                     {errors.genero && <p className="text-red-500 text-xs mt-1">{errors.genero.message}</p>}
@@ -111,7 +111,7 @@ export function AlterarFilme() {
                     <input
                         type="number"
                         id="faixaEtaria"
-                        className="shadow appearance-none border rounded w-full ..."
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
                         {...register('faixaEtaria', {
                             required: 'A faixa etária é obrigatória',
                             min: { value: 0, message: 'Idade não pode ser negativa' }

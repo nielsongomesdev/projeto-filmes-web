@@ -43,7 +43,7 @@ export function CadastrarAtor() {
                     <input 
                         type="text" 
                         id="nome"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none focus:shadow-outline"
                         {...register('nome', { 
                             required: 'O nome é obrigatório',
                             minLength: { value: 3, message: 'O nome deve ter pelo menos 3 caracteres' }
