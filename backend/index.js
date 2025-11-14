@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import prisma from './lib/prisma.js';
 
-import filmeRoutes from './rotas/filme.routes.js';
-import atorRoutes from './rotas/ator.routes.js';
+import filmeRoutes from './routes/filme.routes.js';
+import atorRoutes from './routes/ator.routes.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
