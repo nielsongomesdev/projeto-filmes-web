@@ -17,7 +17,7 @@ export function CadastrarAtor() {
 
     const onSubmit: SubmitHandler<FormInputs> = async (data) => {
         try {
-            await axios.post('http://localhost:3000/api/atores', data);
+            await axios.post('https://api-filmes-n5af.onrender.com/api/atores', data);
             
             alert('Ator cadastrado com sucesso!');
             

@@ -23,7 +23,7 @@ export function ListarFilmes() {
   const [filmeParaDeletar, setFilmeParaDeletar] = useState<Filme | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/filmes')
+    axios.get('https://api-filmes-n5af.onrender.com/api/filmes')
       .then(response => {
         setFilmes(response.data);
       })
@@ -36,7 +36,7 @@ export function ListarFilmes() {
     if (!filmeParaDeletar) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/filmes/${filmeParaDeletar.id}`);
+      await axios.delete(`https://api-filmes-n5af.onrender.com/api/filmes/${filmeParaDeletar.id}`);
       setFilmes(filmes.filter(filme => filme.id !== filmeParaDeletar.id));
       alert('Filme removido com sucesso!');
     } catch (error) {

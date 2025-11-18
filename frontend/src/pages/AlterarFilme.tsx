@@ -29,8 +29,8 @@ export function AlterarFilme() {
     } = useForm<FormInputs>();
 
     useEffect(() => {
-        const buscarAtores = axios.get('http://localhost:3000/api/atores');
-        const buscarFilme = axios.get(`http://localhost:3000/api/filmes/${id}`);
+        const buscarAtores = axios.get('https://api-filmes-n5af.onrender.com/api/atores');
+        const buscarFilme = axios.get(`https://api-filmes-n5af.onrender.com/api/filmes/${id}`);
 
         Promise.all([buscarAtores, buscarFilme])
             .then(([responseAtores, responseFilme]) => {
@@ -65,7 +65,7 @@ export function AlterarFilme() {
                 }
             };
 
-            await axios.put(`http://localhost:3000/api/filmes/${id}`, dadosFormatados);
+            await axios.put(`https://api-filmes-n5af.onrender.com/api/filmes/${id}`, dadosFormatados);
             
             alert('Filme atualizado com sucesso!');
             navigate('/');

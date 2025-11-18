@@ -14,7 +14,7 @@ export function ListarAtores() {
     const [atorParaDeletar, setAtorParaDeletar] = useState<Ator | null>(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/atores')
+        axios.get('https://api-filmes-n5af.onrender.com/api/atores')
             .then(response => {
                 setAtores(response.data);
             })
@@ -27,7 +27,7 @@ export function ListarAtores() {
         if (!atorParaDeletar) return;
 
         try {
-            await axios.delete(`http://localhost:3000/api/atores/${atorParaDeletar.id}`);
+            await axios.delete(`https://api-filmes-n5af.onrender.com/api/atores/${atorParaDeletar.id}`);
             setAtores(atores.filter(ator => ator.id !== atorParaDeletar.id));
             alert('Ator removido com sucesso!');
         } catch (error) {

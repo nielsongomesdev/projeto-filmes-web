@@ -26,7 +26,7 @@ export function CadastrarFilme() {
     } = useForm<FormInputs>();
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/atores')
+        axios.get('https://api-filmes-n5af.onrender.com/api/atores')
             .then(response => {
                 setListaDeAtores(response.data);
             })
@@ -46,7 +46,7 @@ export function CadastrarFilme() {
                 }
             };
 
-            await axios.post('http://localhost:3000/api/filmes', dadosFormatados);
+            await axios.post('https://api-filmes-n5af.onrender.com/api/filmes', dadosFormatados);
             
             alert('Filme cadastrado com sucesso!');
             navigate('/'); 
