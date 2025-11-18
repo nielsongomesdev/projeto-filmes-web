@@ -32,13 +32,13 @@ export function Modal({ isOpen, onClose, onConfirm, title, children }: ModalProp
                 <div className="flex justify-end gap-4">
                     <button
                         onClick={onClose}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+                        className="btn btn-secondary"
                     >
                         Cancelar
                     </button>
                     <button
                         onClick={onConfirm}
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        className="btn btn-danger"
                     >
                         Confirmar
                     </button>

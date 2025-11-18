@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -55,7 +54,7 @@ export function CadastrarAtor() {
                 <div className="text-right">
                     <button 
                         type="submit"
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        className="btn btn-primary w-full sm:w-auto">
                         Cadastrar Ator
                     </button>
                 </div>

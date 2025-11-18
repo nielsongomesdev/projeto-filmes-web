@@ -63,7 +63,8 @@ export function ListarFilmes() {
       <h1 className="text-3xl font-bold mb-6">Catálogo de Filmes</h1>
 
       <div className="shadow overflow-hidden rounded border-b border-gray-200">
-        <table className="min-w-full bg-white">
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white table-auto responsive-table">
           
           <thead className="bg-gray-800 text-white">
             <tr>
@@ -78,13 +79,13 @@ export function ListarFilmes() {
           <tbody className="text-gray-700">
             {filmes.map((filme) => (
               <tr key={filme.id} className="border-b border-gray-200 hover:bg-gray-100">
-                <td className="py-4 px-6">{filme.titulo}</td>
-                <td className="py-4 px-6">{filme.genero}</td>
-                <td className="py-4 px-6">
+                <td className="py-4 px-6 break-words max-w-xs" data-label="Título">{filme.titulo}</td>
+                <td className="py-4 px-6 whitespace-nowrap sm:whitespace-normal" data-label="Gênero">{filme.genero}</td>
+                <td className="py-4 px-6 break-words max-w-xs" data-label="Atores">
                   {filme.atores.map(ator => ator.nome).join(', ')}
                 </td>
-                <td className="py-4 px-6">{filme.faixaEtaria}</td>
-                <td className="py-4 px-6 flex gap-4 items-center"> 
+                <td className="py-4 px-6" data-label="Faixa Etária">{filme.faixaEtaria}</td>
+                <td className="py-4 px-6 flex gap-4 items-center" data-label="Ações"> 
                   <Link 
                     to={`/alterar/${filme.id}`}
                     aria-label={`Alterar ${filme.titulo}`}
@@ -92,17 +93,18 @@ export function ListarFilmes() {
                     <FaEdit size={20} className="text-blue-500 hover:text-blue-700" />
                   </Link>
                   <button 
-                    className=""
+                    className="btn-icon"
                     onClick={() => handleAbrirModal(filme)}
                     aria-label={`Remover ${filme.titulo}`}
                   >
-                    <FaTrash size={20} className="text-red-500 hover:text-red-700" />
+                    <FaTrash size={18} className="text-red-500" />
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       <Modal
