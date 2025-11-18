@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal } from '../components/Modal';
 import { FaTrash } from 'react-icons/fa';
@@ -54,31 +54,34 @@ export function ListarAtores() {
             <h1 className="text-3xl font-bold mb-6">Lista de Atores</h1>
 
             <div className="shadow overflow-hidden rounded border-b border-gray-200">
-                <table className="min-w-full bg-white">
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white table-auto responsive-table">
                     <thead className="bg-gray-800 text-white">
                         <tr>
-                            <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">ID</th>
-                            <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Nome</th>
-                            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Ações</th>
+                            <th className="py-3 px-6 text-center uppercase font-semibold text-sm w-16">ID</th>
+                            <th className="py-3 px-6 text-left uppercase font-semibold text-sm">Nome</th>
+                            <th className="py-3 px-6 text-center uppercase font-semibold text-sm w-24">Ações</th>
                         </tr>
                     </thead>
                     <tbody className="text-gray-700">
                         {atores.map((ator) => (
                             <tr key={ator.id} className="border-b border-gray-200 hover:bg-gray-100">
-                                <td className="py-4 px-6">{ator.id}</td>
-                                <td className="py-4 px-6">{ator.nome}</td>
-                                <td className="py-4 px-6">
+                                <td className="py-4 px-6 whitespace-nowrap text-center align-middle" data-label="ID">{ator.id}</td>
+                                <td className="py-4 px-6 break-words max-w-xs align-middle" data-label="Nome">{ator.nome}</td>
+                                <td className="py-4 px-6 text-center align-middle" data-label="Ações">
                                     <button
                                         onClick={() => handleAbrirModal(ator)}
                                         aria-label={`Remover ${ator.nome}`}
+                                        className="btn-icon inline-flex items-center justify-center"
                                     >
-                                        <FaTrash size={20} className="text-red-500 hover:text-red-700" />
+                                        <FaTrash size={18} className="text-red-500" />
                                     </button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <Modal

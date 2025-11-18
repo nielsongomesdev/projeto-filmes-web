@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -139,7 +139,7 @@ export function AlterarFilme() {
                 <div className="text-right">
                     <button
                         type="submit"
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ..."
+                        className="btn btn-primary w-full sm:w-auto"
                     >
                         Salvar Alterações
                     </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -120,7 +120,7 @@ export function CadastrarFilme() {
                 <div className="text-right">
                     <button 
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ..."
+                        className="btn btn-primary w-full sm:w-auto"
                     >
                         Cadastrar
                     </button>

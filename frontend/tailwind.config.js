@@ -6,12 +6,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // É AQUI QUE A MÁGICA ACONTECE
       colors: {
-        // 1. Definimos 'primary' como uma cor única (blue-600)
-        primary: '#2563eb', 
-
-        // 2. Definimos 'primary-dark' como uma cor separada (blue-700)
+        primary: '#2563eb',
         'primary-dark': '#1d4ed8',
       }
     },

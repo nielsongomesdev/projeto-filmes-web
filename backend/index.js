@@ -30,3 +30,14 @@ process.on('SIGTERM', () => {
         process.exit(0);
     });
 });
+
+process.on('SIGINT', () => {
+    console.log('Servidor recebendo sinal para desligar (SIGINT)...');
+
+    server.close(async () => {
+        console.log('Servidor Express desligado (SIGINT).');
+        await prisma.$disconnect();
+        console.log('Conexão com o Prisma desligada.');
+        process.exit(0);
+    });
+});
